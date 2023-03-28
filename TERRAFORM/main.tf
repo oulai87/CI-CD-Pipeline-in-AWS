@@ -401,7 +401,7 @@ resource "aws_key_pair" "auth_key" {
 
 # Create the S3 bucket for storing Terraform state
 resource "aws_s3_bucket" "thom-project-terraform-state" {
-  bucket = "thom-terraform-state"
+  bucket = "Thom-terraform-state"
 }
 
 resource "aws_s3_bucket_acl" "thom-project-terraform-state" {
@@ -417,13 +417,13 @@ resource "aws_s3_bucket_versioning" "thom-project-terraform-state" {
 }
 
 # Configure the S3 backend
-terraform {
-  backend "s3" {
-    bucket = "thom-project-terraform-state"
-    key    = "prod/terraform.tfstate"
-    region = "us-east-1"
-  }
-}
+# terraform {
+#   backend "s3" {
+#     bucket = "thom-project-terraform-state"
+#     key    = "prod/terraform.tfstate"
+#     region = "us-east-1"
+#   }
+# }
 
 # Creating the Jenkins instance
 resource "aws_instance" "Jenkins"{
@@ -485,13 +485,6 @@ resource "aws_instance" "Grafana"{
 }
 
 # Create the launch configuration for application hosts 
-resource "aws_launch_configuration" "app-launch-config" {
-  name = "app-launch-config"
-  image_id      = "ami-005f9685cb30f234b"
-  instance_type = "t2.micro"
-  security_groups = [aws_security_group.app_sg.id]
-  key_name = var.key_name
-}
 
 resource "aws_launch_configuration" "app-launch-config" {
   name = "app-launch-config"
